@@ -1,6 +1,12 @@
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  ImageBackground,
+} from "react-native";
 
 export default function App() {
   const [contador, setContador] = useState(0);
@@ -18,68 +24,57 @@ export default function App() {
   };
 
   return (
-    <View style={styles.container}>
+    <ImageBackground
+      source={require("./assets/Group 3.png")} // Certifique-se de que a imagem está na pasta correta
+      style={styles.container}
+      resizeMode="cover"
+    >
       <Text style={styles.title}>Contador</Text>
       <Text style={styles.counterText}>{contador}</Text>
       <View style={styles.buttonContainer}>
         <TouchableOpacity style={styles.button} onPress={handleIncrement}>
-          <Text style={styles.buttonText}>Aumentar</Text>
+          <Text style={styles.buttonText}>Incrementar</Text>
         </TouchableOpacity>
-
         <TouchableOpacity style={styles.button} onPress={handleDecrement}>
-          <Text style={styles.buttonText}>Diminuir</Text>
+          <Text style={styles.buttonText}>Decrementar</Text>
         </TouchableOpacity>
-
-        <TouchableOpacity
-          style={[styles.button, styles.resetButton]}
-          onPress={handleReset}
-        >
-          <Text style={styles.buttonText}>Zerar</Text>
+        <TouchableOpacity style={styles.button} onPress={handleReset}>
+          <Text style={styles.buttonText}>Resetar</Text>
         </TouchableOpacity>
       </View>
-      <StatusBar style="auto" />
-    </View>
+    </ImageBackground>
   );
 }
-
+//visual
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#5D688A",
     alignItems: "center",
     justifyContent: "center",
   },
   title: {
-    fontSize: 32,
+    fontSize: 24,
     fontWeight: "bold",
     marginBottom: 20,
+    color: "#fff",
   },
   counterText: {
-    fontSize: 64,
+    fontSize: 48,
     fontWeight: "bold",
-    color: "#333",
-    marginBottom: 30,
+    color: "#fff",
   },
-  button:{
-    backgroundColor: "#007BFF",
-    borderColor: "#fff",
-    borderWidth: 2,
-    borderRadius: 8,
-    paddingVertical: 10,
-    paddingHorizontal: 20,
+  buttonContainer: {
+    flexDirection: "row",
+    marginTop: 20,
+  },
+  button: {
+    backgroundColor: "#007bff",
+    padding: 10,
+    borderRadius: 5,
     marginHorizontal: 10,
   },
   buttonText: {
-    color: "#333",
-    fontSize: 18,
+    color: "#fff",
     fontWeight: "bold",
-  },
-  buttonContainer: {
-    flexDirection: "row-reverse",
-    marginTop: 20,
-    gap: 6,
-  },
-  resetButton: {
-    backgroundColor: "#FF4136",
   },
 });
